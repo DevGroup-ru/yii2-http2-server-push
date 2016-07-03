@@ -15,3 +15,6 @@ php composer.phar require devgroup/yii2-http2-server-push
 - [How to enable HTTP/2 in apache](https://icing.github.io/mod_h2/howto.html)
 - [HTTP2 server push for symphony](https://www.symfony.fi/entry/http-2-server-push-with-the-symfony-httpkernel)
 - Nginx currently does not support server push.
+
+
+Made by [DevGroup.ru](https://devgroup.ru/).
