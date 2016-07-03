@@ -117,8 +117,8 @@ class AutomaticServerPush implements yii\base\BootstrapInterface
      */
     protected function addPreloadHeader($filename, $as)
     {
-        $cross = strpos($filename, '//') !== false ? '; crossorigin' : '';
-        $cross = strpos($filename, 'http') !== false ? '; crossorigin' : $cross;
+        $cross = strpos($filename, '//') === 0 ? '; crossorigin' : '';
+        $cross = strpos($filename, 'http') === 0 ? '; crossorigin' : $cross;
         Yii::$app->response->headers->add(
             'Link',
             "<$filename>; rel=preload; as=$as" . $cross
