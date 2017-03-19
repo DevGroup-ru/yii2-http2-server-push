@@ -37,11 +37,13 @@ class AutomaticServerPush implements yii\base\BootstrapInterface
                 // we have to parse ready tags
                 // the better performance solution will be to override View
                 // but that is a task for next version
-                $cssLinkTags = implode(' ', $view->cssFiles);
-                preg_match_all('/href="([^"]*)"/', $cssLinkTags, $matches);
-                if (array_key_exists(1, $matches)) {
-                    foreach ($matches[1] as $filename) {
-                        $this->addPreloadHeader($filename, 'style');
+                if ($view->cssFiles !== null && count($view->cssFiles) > 0) {
+                    $cssLinkTags = implode(' ', $view->cssFiles);
+                    preg_match_all('/href="([^"]*)"/', $cssLinkTags, $matches);
+                    if (array_key_exists(1, $matches)) {
+                        foreach ($matches[1] as $filename) {
+                            $this->addPreloadHeader($filename, 'style');
+                        }
                     }
                 }
 
@@ -69,7 +71,7 @@ class AutomaticServerPush implements yii\base\BootstrapInterface
                 );
 
                 foreach ($pushScriptsOnPosition as $position) {
-                    if (array_key_exists($position, $view->jsFiles)) {
+                    if (array_key_exists($position, $view->jsFiles) && $view->jsFiles[$position] !== null && count($view->jsFiles[$position]) > 0) {
                         $jsFiles = implode(' ', $view->jsFiles[$position]);
                         preg_match_all('/src="([^"]*)"/', $jsFiles, $matches);
 
