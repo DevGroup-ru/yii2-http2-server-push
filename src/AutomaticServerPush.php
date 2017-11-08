@@ -37,7 +37,7 @@ class AutomaticServerPush implements yii\base\BootstrapInterface
                 // we have to parse ready tags
                 // the better performance solution will be to override View
                 // but that is a task for next version
-                if ($view->cssFiles !== null && count($view->cssFiles) > 0) {
+                if ($view->cssFiles !== null && is_array($view->cssFiles) && count($view->cssFiles) > 0) {
                     $cssLinkTags = implode(' ', $view->cssFiles);
                     preg_match_all('/href="([^"]*)"/', $cssLinkTags, $matches);
                     if (array_key_exists(1, $matches)) {
