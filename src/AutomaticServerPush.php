@@ -71,7 +71,7 @@ class AutomaticServerPush implements yii\base\BootstrapInterface
                 );
 
                 foreach ($pushScriptsOnPosition as $position) {
-                    if (array_key_exists($position, $view->jsFiles) && $view->jsFiles[$position] !== null && count($view->jsFiles[$position]) > 0) {
+                    if (is_array($view->jsFiles) && array_key_exists($position, $view->jsFiles) && $view->jsFiles[$position] !== null && count($view->jsFiles[$position]) > 0) {
                         $jsFiles = implode(' ', $view->jsFiles[$position]);
                         preg_match_all('/src="([^"]*)"/', $jsFiles, $matches);
 
